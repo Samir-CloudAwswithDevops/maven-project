@@ -41,21 +41,21 @@ mvn --version
 # Install Git
 yum install git -y
 
-# Install Tree command
+#### Install Tree command###
 yum install tree -y
-Example Maven version output:
 
-yaml
-Copy code
+###Example Maven version output:###
 Apache Maven 3.8.4 (Red Hat 3.8.4-3.amzn2023.0.5)
 Maven home: /usr/share/maven
 Java version: 17.0.17, vendor: Amazon.com Inc., runtime: /usr/lib/jvm/java-17-amazon-corretto.x86_64
-Clone the Project
+
+###Clone the Project###
 bash
 Copy code
 git clone https://github.com/Samir-CloudAwswithDevops/maven-project.git
 cd maven-project
 ls
+pom.xml, src ,  traget ,file1
 Maven Build Lifecycle
 1. Clean Project
 bash
