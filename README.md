@@ -54,23 +54,25 @@ bash
 Copy code
 git clone https://github.com/Samir-CloudAwswithDevops/maven-project.git
 cd maven-project
-ls
-pom.xml, src ,  traget ,file1
-Maven Build Lifecycle
-1. Clean Project
-bash
-Copy code
-mvn clean
-Output example:
+cd maven-project <inside>#### mvn clean ####   clean all jar,war,file like fresh structre goals
 
-csharp
-Copy code
+               use command - tree 
+
+output- [INFO] Scanning for projects...
+[INFO] 
+[INFO] ----------------------< com.mycompany.app:my-app >----------------------
+[INFO] Building my-app 1.0-SNAPSHOT
+[INFO] --------------------------------[ jar ]---------------------------------
+[INFO] 
+[INFO] --- maven-clean-plugin:2.5:clean (default-clean) @ my-app ---
+[INFO] Deleting /root/sample-maven-project/target
+[INFO] ------------------------------------------------------------------------
 [INFO] BUILD SUCCESS
-bash
-Copy code
-tree
-css
-Copy code
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time:  0.364 s
+[INFO] Finished at: 2025-11-25T09:44:45Z
+[INFO] ------------------------------------------------------------------------
+[root@ip-172-31-67-117 maven-project]# tree
 .
 ├── README.md
 ├── pom.xml
@@ -87,33 +89,106 @@ Copy code
                 └── mycompany
                     └── app
                         └── AppTest.java
-2. Compile Project
-bash
-Copy code
-mvn compile
-Output example:
 
-pgsql
-Copy code
-target/
-├── classes/
-│   └── com/mycompany/app/App.class
-├── generated-sources/
-└── maven-status/
-3. Run Tests
-bash
-Copy code
-mvn test
-Output example:
+ ##### type command- mvn compile ##### create jar,war,var file ####
 
-yaml
-Copy code
+output 
+.
+├── README.md
+├── pom.xml
+├── src
+│   ├── main
+│   │   └── java
+│   │       └── com
+│   │           └── mycompany
+│   │               └── app
+│   │                   └── App.java
+│   └── test
+│       └── java
+│           └── com
+│               └── mycompany
+│                   └── app
+│                       └── AppTest.java
+└── target
+    ├── classes
+    │   └── com
+    │       └── mycompany
+    │           └── app
+    │               └── App.class
+    ├── generated-sources
+    │   └── annotations
+    └── maven-status
+        └── maven-compiler-plugin
+            └── compile
+                └── default-compile
+                    ├── createdFiles.lst
+                    └── inputFiles.lst
+
+ ##### mvn clean & mvn complie are build success then run command mvn test ######
+
+output -  type command mvn test
+
+-------------------------------------------------------
+ T E S T S
+-------------------------------------------------------
 Running com.mycompany.app.AppTest
+Tests run: 2, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.016 sec
+
+Results :
+
 Tests run: 2, Failures: 0, Errors: 0, Skipped: 0
+
+[INFO] ------------------------------------------------------------------------
 [INFO] BUILD SUCCESS
-Generating a Project with a Specific Archetype
-bash
-Copy code
+[INFO] ------------------------------------------------------------------------
+
+.
+├── README.md
+├── pom.xml
+├── src
+│   ├── main
+│   │   └── java
+│   │       └── com
+│   │           └── mycompany
+│   │               └── app
+│   │                   └── App.java
+│   └── test
+│       └── java
+│           └── com
+│               └── mycompany
+│                   └── app
+│                       └── AppTest.java
+└── target
+    ├── classes
+    │   └── com
+    │       └── mycompany
+    │           └── app
+    │               └── App.class
+    ├── generated-sources
+    │   └── annotations
+    ├── generated-test-sources
+    │   └── test-annotations
+    ├── maven-status
+    │   └── maven-compiler-plugin
+    │       ├── compile
+    │       │   └── default-compile
+    │       │       ├── createdFiles.lst
+    │       │       └── inputFiles.lst
+    │       └── testCompile
+    │           └── default-testCompile
+    │               ├── createdFiles.lst
+    │               └── inputFiles.lst
+    ├── surefire-reports
+    │   ├── TEST-com.mycompany.app.AppTest.xml
+    │   └── com.mycompany.app.AppTest.txt
+    └── test-classes
+        └── com
+            └── mycompany
+                └── app
+                    └── AppTest.class
+
+###### Generate a project with a specific archetype  install a archetype in server ##########
+
 mvn archetype:generate \
   -DarchetypeGroupId=org.apache.maven.archetypes \
   -DarchetypeArtifactId=maven-archetype-quickstart \
@@ -122,42 +197,76 @@ mvn archetype:generate \
   -DartifactId=my-app \
   -Dversion=1.0.0 \
   -DinteractiveMode=false
-Interactive Mode
-bash
-Copy code
-mvn archetype:generate
-Choose a groupId, artifactId, and version from the list.
 
-Follow the prompts to define project properties.
 
-Example selections:
+ #######then run this command for Interactive mode (asks for groupId, artifactId, etc.)######
 
-python
-Copy code
-Choose a number or apply filter: 2293:3580
-Choose version: 4.1.0
-Define value for property 'groupId': apple
-Define value for property 'artifactId': com.uber
-Define value for property 'version' 1.0-SNAPSHOT: [ENTER]
-Define value for property 'package' apple: [ENTER]
-Confirm properties configuration: Y
-After configuration, build project:
+          mvn archetype:generate  ----after run this command showing many groupid, artifactid like 
 
-bash
-Copy code
-mvn clean
-mvn compile
-mvn test
-All output should show BUILD SUCCESS.
+ 
+output- 
+Choose a number or apply filter (format: [groupId:]artifactId, case sensitive contains): 2293: 3580 👈 #choose any group id ###
+Downloading from central: https://repo.maven.apache.org/maven2/top/tshare/maven/ddd-scaffold-lite-test/1.0/ddd-scaffold-lite-test-1.0.jar
+Downloaded from central: https://repo.maven.apache.org/maven2/top/tshare/maven/ddd-scaffold-lite-test/1.0/ddd-scaffold-lite-test-1.0.jar (55 kB at 77 kB/s)
 
-Project Structure
-swift
-Copy code
-.
-├── pom.xml
-├── src/
-│   ├── main/java/com/mycompany/app/App.java
-│   └── test/java/com/mycompany/app/AppTest.java
-└── target/
-Screenshots
-BUILD SUCCESS output is visible in the terminal screenshot:
+then choose any number like -
+
+        Choose a number or apply filter (format: [groupId:]artifactId, case sensitive contains): 2293: 3580
+        Choose za.co.absa.hyperdrive:component-archetype version: 
+        1: 1.0.0    👈
+        2: 2.0.0    👈
+        3: 3.0.0    👈
+        4: 3.1.0    👈      ###choose any one  latest number###
+        5: 3.2.2    👈
+        6: 3.3.0    👈
+        7: 4.0.0    👈
+        8: 4.1.0    👈
+        Choose a number: 8: 7 👉  then enter 
+
+then showing groupId, artifactId like - Downloaded from central: https://repo.maven.apache.org/maven2/za/co/absa/hyperdrive/component-archetype/4.0.0/component-archetype-4.0.0.jar (9.7 kB at 17 kB/s)
+Define value for property 'groupId': apple        ### groupid name ###
+Define value for property 'artifactId': com.uber  ###  artifactid name ###
+Define value for property 'version' 1.0-SNAPSHOT: ### 👉  then enter ###
+Define value for property 'package' apple:        ### then check correct groupId, artifactId name  ###
+Confirm properties configuration:                 👉  then enter 
+groupId: apple                                     
+artifactId: com.uber
+version: 1.0-SNAPSHOT
+package: apple
+ Y:           👉  then enter              
+
+show build failure 
+
+then goto [root@ip-172-31-67-117 ~maven-project] ls
+pom.xml com.uber src target file1
+
+[root@ip-172-31-67-117 ~]cd com.uber
+
+[root@ip-172-31-67-117 ~com.uber]ls
+pom.xml
+
+
+then type command - mvn clean
+
+                  - mvn compile 
+output can see the screenshot you uploaded (showing BUILD SUCCESS) — everything looks correct. 🎉
+ 
+
+then type command - mvn test 
+
+output 
+-------------------------------------------------------
+ T E S T S
+-------------------------------------------------------
+Running com.mycompany.app.AppTest
+Tests run: 2, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.016 sec
+
+Results :
+
+Tests run: 2, Failures: 0, Errors: 0, Skipped: 0
+
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD SUCCESS
+[INFO] ------------------------------------------------------------------------
+
+all output are there in screenshot 
